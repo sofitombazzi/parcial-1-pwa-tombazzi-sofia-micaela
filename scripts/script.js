@@ -13,6 +13,21 @@ const pedirPokemones = () => {
     .then(result => {
         const results = result.results;
         console.log(results);
+
+        //Me guardo las URL en un array
+        results.forEach(element =>{
+            const id = parseInt(element.url.slice(34),10);
+            console.log(id)
+
+        // Hago un segundo fetch de la URL de cada pokemon por id
+        fetch(URL_ID + id)
+        .then(respondDetails => respondDetails.json())
+        .then(respondDetails => {
+            const resultsDetails = respondDetails;
+            console.log(resultsDetails);
+        });
+
+        });    
     });
 };
 
